@@ -1,0 +1,22 @@
+<odoo>
+    <record id="todo_lg_app.tarea_1" model="todo_lg_app">
+        <field name="name">tarea #1: Programa una cita con el doctor</field>
+        <field name="state">Borrador</field>
+    </record>
+    <record id="todo_lg_app.tarea_2" model="todo_lg_app">
+        <field name="name">tarea #2: Diseno CSS 3 y html 5</field>
+        <field name="state">Borrador</field>
+    </record>
+    <record id="todo_lg_app.tarea_3" model="todo_lg_app">
+        <field name="name">tarea #3: Programar Modulo</field>
+        <field name="state"> Cancelado</field>
+    </record>
+    <record id="todo_lg_app.tarea_4" model="todo_lg_app">
+        <field name="name">tarea #4: Escribiendo un articulo</field>
+        <field name="state">Terminado</field>
+    </record>
+    <record id="todo_lg_app.tarea_5" model="todo_lg_app">
+        <field name="name">tarea #5: Ultima tarea</field>
+        <field name="state">Terminado</field>
+    </record>
+</odoo>
