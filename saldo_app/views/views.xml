@@ -15,23 +15,68 @@
                         <group>
                             <field name="type_move" widget="radio" required="1"/>
                             <field name="currency_id" invisible="0"/>
-                            <field name="amount" required="1" widget="monetary" options="{'currency_field':'currency_id'}"/>
+                            <field name="amount" required="1" widget="monetary"
+                                   options="{'currency_field':'currency_id'}"/>
                             <field name="date" required="1"/>
                         </group>
                         <group>
-                            <field name="tag_id" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                             <field name="category_id"/>
                         </group>
-                        <group>
-                            <field name="notas"/>
-                            <field name="receipt_image" widget="image"/>
-                        </group>
+                    </group>
+                    <group>
+                        <field name="notas"/>
+                        <field name="receipt_image" widget="image"/>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
 
+    <record id="view_tree_movimiento" model="ir.ui.view">
+        <field name="name">view.tree.sa.movimiento</field>
+        <field name="model">sa.movimiento</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="type_move == 'ingreso'" decoration-danger="type_move == 'gasto'">
+                <field name="date" optional="show"/>
+                <field name="name"/>
+                <field name="type_move" optional="show"/>
+                <field name="amount" widget="monetary" options="{'currency_field':'currency_id'}"/>
+                <field name="tag_ids" optional="hide" widget="many2many_tags" string="Etiquetas"/>
+                <field name="category_id" optional="hide"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_search_movimiento" model="ir.ui.view">
+        <field name="name">view.search.sa.movimiento</field>
+        <field name="model">sa.movimiento</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="notas"/>
+                <field name="category_id"/>
+                <field name="tag_ids"/>
+
+                <filter name="filter_tipo_ingresos" string="Ingresos" domain="[('type_move','=','ingreso')]"/>
+                <filter name="filter_tipo_gastos" string="Gastos" domain="[('type_move','=','gasto')]"/>
+                   <!--
+                <filter name="filter_today"
+                        string="Hoy"
+                        domain="[('date','&gt;=',datetime.datetime.now().strftime('%y-%m-%d 00:00:00')),('date','&lt;=',datetime.datetime.now().strftime('%y-%m-%d 23:59:59'))]"/>
+
+                <filter name="filter_this_week"
+                        string="Ultimos 7 dias"
+                        domain="[('date','&lt;=',context_today().strftime('%y-%m-%d 23:59:59')),('date','&gt;=',(context_today()-daytime.timedelta(days=7))_.strftime('%y-%m-%d 00:00:00'))]"/>
+                        -->
+            </search>
+        </field>
+    </record>
+-->
     <!-- Acciones de Ventanas -->
 
     <record id="action_view_movimiento" model="ir.actions.act_window">
@@ -42,7 +87,7 @@
      <record id="action_view_categoria" model="ir.actions.act_window">
         <field name ="name">Categorias</field>
         <field name="res_model">sa.category</field>
-    </record>
+     </record>
 
     <record id="action_view_tag" model="ir.actions.act_window">
         <field name ="name">Tags</field>
