@@ -12,6 +12,7 @@ class todo_lg_app(models.Model):
     description = fields.Char(string="Descripcion")
     title = fields.Char(string="titulo")
     price = fields.Float(string="Precio")
+    date = fields.Datetime(string="Fecha", track_visibility="onchange")
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
 #

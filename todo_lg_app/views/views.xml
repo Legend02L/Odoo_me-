@@ -22,7 +22,8 @@
             <group string="Informacion">
               <field name="name"/>
               <field name="description"/>
-              <field name="state"/>
+              <field name="state" optional="show"/>
+              <field name="date" optional="show"/>
             </group> 
           </sheet> 
         </form>
@@ -33,7 +34,20 @@
       <field name="name">Lista de Tareas</field>
       <field name="res_model">todo_lg_app</field>
     </record>
-
+<!--
+    <record id="view_tree_todo_lg_app" model="ir.ui.view">
+      <field name="name">todo_lg_app.view.tree.todo</field>
+      <field name="model">todo_lg_app</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="state" optional="show"/>
+          <field name="date" optional="show"/>
+        </tree>
+      </field>
+    </record>
+-->
     <menuitem name="Todo APP" parent="" id="menu_main_todo" action="todo_lg_app.action_view_todo"/>
 <!--
     <record model="ir.ui.view" id="todo_lg_app.list">
